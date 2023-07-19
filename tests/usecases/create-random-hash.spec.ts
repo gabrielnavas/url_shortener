@@ -1,4 +1,4 @@
-import { CreateRandomHash } from "@/create-random-hash"
+import { CreateRandomHash } from "@/usecases/create-random-hash"
 
 describe('Create Random Hash Class', () => {
   test('the hash must be a maximum of 7 characters', () => {
