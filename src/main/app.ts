@@ -1,3 +1,4 @@
+import { CreateRandomHash } from '@/usecases/create-random-hash'
 import express, { type Express } from 'express'
 
 export class App {
@@ -7,12 +8,16 @@ export class App {
     return this._app
   }
 
-  constructor () {
+  constructor (
+    private readonly createRandomHash = new CreateRandomHash(8)
+  ) {
     this._app = express()
 
     this._app.post('/url', (req, res) => {
+      const hash = this.createRandomHash.execute()
       res.status(200).json({
-        hash: '123456'
+        hash,
+        validity: Date.now()
       })
     })
   }
