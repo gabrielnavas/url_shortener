@@ -2,7 +2,7 @@ import {
   CreateRandomBase64StringUsecase
 } from '@/usecases/create-random-base64-string-usecase'
 
-describe('Create Random Hash Class', () => {
+describe('Create random base64 string use case class', () => {
   test('the hash must be a maximum of 7 characters', () => {
     const sut = new CreateRandomBase64StringUsecase()
     const hash = sut.execute()
@@ -45,5 +45,20 @@ describe('Create Random Hash Class', () => {
     const sut = new CreateRandomBase64StringUsecase()
     const base64Length: number = 64
     expect(sut.getReferenceASCII().length).toEqual(base64Length)
+  })
+
+  test('should call the correct methods when call to be calcule how many hashes will be generated', () => {
+    const sut = new CreateRandomBase64StringUsecase(4)
+    const getReferenceASCIISpy = jest.spyOn(sut, 'getReferenceASCII')
+    const getStringLengthSpy = jest.spyOn(sut, 'getStringLength')
+    sut.getHowManyHashesCount()
+    expect(getReferenceASCIISpy).toHaveBeenCalled()
+    expect(getStringLengthSpy).toHaveBeenCalled()
+  })
+
+  test('should calculate how many hashes will be generated', () => {
+    const sut = new CreateRandomBase64StringUsecase(4)
+    const howMany = Math.pow(sut.getReferenceASCII().length, sut.getStringLength())
+    expect(sut.getHowManyHashesCount()).toEqual(howMany)
   })
 })
