@@ -4,7 +4,7 @@
   "description": "- Send a URL to generate and obtain a unique hash. - Send a URL with a hash and redirect to the original link.",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --watch"
   },
   "keywords": [],
   "author": "",
