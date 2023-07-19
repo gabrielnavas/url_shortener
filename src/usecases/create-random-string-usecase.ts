@@ -1,12 +1,13 @@
 export interface CreateRandomString {
   execute: () => string
+  getReferenceASCII: () => string
 }
 
 export class CreateRandomHash implements CreateRandomString {
   private readonly _base64ASCII: string
   private readonly hashLength: number
 
-  get base64ASCII (): string {
+  getReferenceASCII (): string {
     return this._base64ASCII
   }
 

@@ -1,4 +1,4 @@
-import { CreateRandomHash } from '@/usecases/create-random-string'
+import { CreateRandomHash } from '@/usecases/create-random-string-usecase'
 
 describe('Create Random Hash Class', () => {
   test('the hash must be a maximum of 7 characters', () => {
@@ -41,6 +41,6 @@ describe('Create Random Hash Class', () => {
 
   test('should return base64 size', () => {
     const sut = new CreateRandomHash()
-    expect(sut.base64ASCII.length).toEqual(64)
+    expect(sut.getReferenceASCII().length).toEqual(64)
   })
 })
