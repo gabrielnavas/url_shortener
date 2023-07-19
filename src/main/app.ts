@@ -1,5 +1,6 @@
-import { CreateRandomHash } from '@/usecases/create-random-hash'
 import express, { type Express } from 'express'
+
+import { CreateRandomHash } from '@/usecases/create-random-hash'
 
 export class App {
   private readonly _app: Express
