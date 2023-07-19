@@ -1,15 +1,17 @@
-import { CreateRandomHash } from '@/usecases/create-random-string-usecase'
+import {
+  CreateRandomBase64StringUsecase
+} from '@/usecases/create-random-base64-string-usecase'
 
 describe('Create Random Hash Class', () => {
   test('the hash must be a maximum of 7 characters', () => {
-    const sut = new CreateRandomHash()
+    const sut = new CreateRandomBase64StringUsecase()
     const hash = sut.execute()
     expect(typeof hash).toEqual('string')
     expect(hash.length).toEqual(8)
   })
 
   test('must not generate repeated hashes', () => {
-    const sut = new CreateRandomHash()
+    const sut = new CreateRandomBase64StringUsecase()
 
     const generateHashes = (howMany: number = 10): string[] => {
       const hashes: string[] = []
@@ -40,7 +42,8 @@ describe('Create Random Hash Class', () => {
   })
 
   test('should return base64 size', () => {
-    const sut = new CreateRandomHash()
-    expect(sut.getReferenceASCII().length).toEqual(64)
+    const sut = new CreateRandomBase64StringUsecase()
+    const base64Length: number = 64
+    expect(sut.getReferenceASCII().length).toEqual(base64Length)
   })
 })

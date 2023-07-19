@@ -1,30 +1,39 @@
 export interface CreateRandomString {
   execute: () => string
   getReferenceASCII: () => string
+  getStringLength: () => number
+  getHowManyHashesCount: () => number
 }
 
-export class CreateRandomHash implements CreateRandomString {
+export class CreateRandomBase64StringUsecase implements CreateRandomString {
   private readonly _base64ASCII: string
-  private readonly hashLength: number
 
   getReferenceASCII (): string {
     return this._base64ASCII
   }
 
-  constructor (hashLength: number = 8) {
+  getStringLength = (): number => {
+    return this._hashLength
+  }
+
+  constructor (private readonly _hashLength: number = 8) {
     this._base64ASCII = this.generateBase64ASCII()
-    this.hashLength = hashLength
   }
 
   execute = (): string => {
     let hashRandom = ''
     let counter = 0
-    while (counter < this.hashLength) {
+    while (counter < this._hashLength) {
       const positionRandom = Math.floor(Math.random() * this._base64ASCII.length)
       hashRandom += this._base64ASCII[positionRandom]
       counter++
     }
     return hashRandom
+  }
+
+  getHowManyHashesCount = (): number => {
+    const referenceASCIILength: number = this.getReferenceASCII().length
+    return Math.pow(referenceASCIILength, this.getStringLength())
   }
 
   private generateBase64ASCII (): string {
