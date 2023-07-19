@@ -1,35 +1,4 @@
-class CreateRandomHash {
-  private _base64ASCII: string
-  private hashLength: number
-
-  get base64ASCII() {
-    return this._base64ASCII
-  }
-
-  constructor(hashLength: number = 8) {
-    this._base64ASCII = this.generateBase64ASCII()
-    this.hashLength = hashLength
-  }
-  
-  execute = () => {
-    let hashRandom = ''
-    let counter = 0
-    while(counter < this.hashLength) {
-      const positionRandom = Math.floor(Math.random() * this._base64ASCII.length)
-      hashRandom += this._base64ASCII[positionRandom]
-      counter++
-    }
-    return hashRandom
-  }
-
-  private generateBase64ASCII(): string {
-    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    const lettersLowCase = letters.toLocaleLowerCase()
-    const numbers = '0123456789'
-    const symbols = "+/"
-    return `${letters}${lettersLowCase}${numbers}${symbols}`
-  }
-}
+import { CreateRandomHash } from "./create-random-hash"
 
 describe('Create Random Hash Class', () => {
   test('the hash must be a maximum of 7 characters', () => {
