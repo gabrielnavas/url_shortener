@@ -1,15 +1,13 @@
-import express, { Express } from 'express'
-import { Server } from 'http'
+import express, { type Express } from 'express'
 
 export class App {
+  private readonly _app: Express
 
-  private _app: Express
-
-  get app() {
+  get app (): Express {
     return this._app
   }
 
-  constructor() {
+  constructor () {
     this._app = express()
 
     this._app.post('/url', (req, res) => {

@@ -10,7 +10,9 @@
     "paths": {
       "@/tests/*": ["../tests/*"],
       "@/*": ["*"]
-    }
+    },
+    "strictNullChecks": true,
+    "allowJs": true
   },
   "include": ["src", "tests"],
   "exclude": [],

@@ -1,4 +1,4 @@
-import { CreateRandomHash } from "@/usecases/create-random-hash"
+import { CreateRandomHash } from '@/usecases/create-random-hash'
 
 describe('Create Random Hash Class', () => {
   test('the hash must be a maximum of 7 characters', () => {
@@ -12,9 +12,9 @@ describe('Create Random Hash Class', () => {
     const sut = new CreateRandomHash()
 
     const generateHashes = (howMany: number = 10): string[] => {
-      const hashes = []
-      while(howMany > 0) {
-        const hash = sut.execute()
+      const hashes: string[] = []
+      while (howMany > 0) {
+        const hash: string = sut.execute()
         hashes.push(hash)
         howMany--
       }
@@ -23,10 +23,10 @@ describe('Create Random Hash Class', () => {
 
     const verifyRepeatHash = (hashes: string[]): boolean => {
       let hashRepeatHashs = false
-      while(hashRepeatHashs === false && hashes.length > 1) {
+      while (!hashRepeatHashs && hashes.length > 1) {
         const hash = hashes.pop()
         const hashFind = hashes.find(hashi => hash === hashi)
-        if(hashFind !== undefined) {
+        if (hashFind !== undefined) {
           hashRepeatHashs = true
         }
       }
