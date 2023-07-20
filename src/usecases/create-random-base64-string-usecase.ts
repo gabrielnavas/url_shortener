@@ -23,9 +23,13 @@ export class CreateRandomBase64StringUsecase implements CreateRandomString {
   execute = (): string => {
     let hashRandom = ''
     let counter = 0
-    while (counter < this._hashLength) {
-      const positionRandom = Math.floor(Math.random() * this._base64ASCII.length)
-      hashRandom += this._base64ASCII[positionRandom]
+    const referenceBase64ASCII = this.getReferenceASCII()
+    const referenceBase64ASCIILength = referenceBase64ASCII.length
+    const stringBase64Length = this.getStringLength()
+    let positionRandom: number
+    while (counter < stringBase64Length) {
+      positionRandom = Math.floor(Math.random() * referenceBase64ASCIILength)
+      hashRandom += referenceBase64ASCII[positionRandom]
       counter++
     }
     return hashRandom
